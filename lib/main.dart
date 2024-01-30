@@ -45,7 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           children: [
-            Text("HELLO"),
+            Container(
+              child: Image.asset(
+                'lib/icons/sedan.png',
+                fit: BoxFit.fitHeight,
+              ),
+              height: 40,
+              margin: EdgeInsets.only(top: 40),
+            ),
+            Text(
+              "Mileage",
+              style: TextStyle(
+                fontFamily: 'Iceland',
+                fontSize: 52,
+                color: Colors.white,
+              ),),
           ],
         ),
       ),
