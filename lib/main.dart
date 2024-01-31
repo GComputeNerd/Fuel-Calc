@@ -35,21 +35,12 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Container(
+            SizedBox(height: 30,),
+            Heading(
               height: height*0.04,
-              margin: const EdgeInsets.only(top: 40),
-              child: Image.asset(
-                'lib/icons/sedan.png',
-                fit: BoxFit.fitHeight,
-              ),
+              imgPath: "lib/icons/sedan.png",
+              title: "Mileage",
             ),
-            const Text(
-              "Mileage",
-              style: TextStyle(
-                fontFamily: 'Iceland',
-                fontSize: 40,
-                color: Colors.white,
-              ),),
             InputBox(
               width: width*0.8,
               hintText: "Distance",
@@ -74,10 +65,64 @@ class MyHomePage extends StatelessWidget {
               width: width*0.8, 
               hintText: "Speed", 
               suffix: "km/hr"
+            ),
+            Container(
+              width: width*0.82,
+              height: height*0.007,
+              margin: EdgeInsets.symmetric(vertical: 13),
+              decoration: BoxDecoration(
+                color: Color(0xFF404040),
+                borderRadius: BorderRadius.circular(50)
+              ),
+            ),
+            Heading(
+              height: height*0.06,
+              imgPath: "lib/icons/range.png",
+              title: "Range"
+            ),
+            InputBox(
+              width: width*0.8,
+              hintText: "Fuel in Tank",
+              suffix: "ltr"
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+class Heading extends StatelessWidget {
+  const Heading({
+    super.key,
+    required this.height,
+    required this.imgPath,
+    required this.title,
+  });
+
+  final String imgPath;
+  final String title;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: height,
+          child: Image.asset(
+            imgPath,
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        Text(
+          title,
+          style: const TextStyle(
+            fontFamily: 'Iceland',
+            fontSize: 40,
+            color: Colors.white,
+          ),),
+      ],
     );
   }
 }
