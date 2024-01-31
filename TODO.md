@@ -1,0 +1,4 @@
+- [ ] Update Cursor positioning and size for InputBox
+- [ ] Add clear all button
+- [ ] Handle overflow text
+- [ ] Maybe replace table row with flex row
