@@ -105,7 +105,7 @@ class _MyHomePage extends State<MyHomePage> {
               Result(
                 children: [
                   resultRow("Range", fuelState.getRange(), "km"),
-                  resultRow("Time Left", "XXX", "hrs")
+                  resultRow("Time Left", fuelState.getTimeLeft(), "hrs")
                 ],
               )
             ],

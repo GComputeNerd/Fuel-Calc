@@ -17,15 +17,27 @@ class FuelHandler extends ChangeNotifier {
   }
 
   String getRange() {
-    var text  = mileageDistance.text.toString();
+    var mdist  = mileageDistance.text.toString();
     var mfuel = mileageFuel.text.toString();
     var fuel = fuelLeft.text.toString();
 
-    if (text.length * mfuel.length * fuel.length != 0) {
-      num mileage = num.parse(text) / num.parse(mfuel);
+    if (mdist.length * mfuel.length * fuel.length != 0) {
+      num mileage = num.parse(mdist) / num.parse(mfuel);
       num range = num.parse(fuel) * mileage;
 
       return range.toString();
+    } else {
+      return "XXX";
+    }
+  }
+
+  String getTimeLeft() {
+    var rangeString = getRange();
+    var speed = avgSpeed.text.toString();
+
+    if (rangeString != "XXX" && speed.isNotEmpty) {
+      num timeLeft = num.parse(rangeString) / num.parse(speed);
+      return timeLeft.toString();
     } else {
       return "XXX";
     }
