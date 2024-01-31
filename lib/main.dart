@@ -44,6 +44,7 @@ class MyHomePage extends StatelessWidget {
                 title: "Mileage",
               ),
               InputBox(
+                height: height,
                 width: width*0.8,
                 hintText: "Distance",
                 suffix: "km",
@@ -58,12 +59,14 @@ class MyHomePage extends StatelessWidget {
               ),
               const SizedBox(height: 5,),
               InputBox(
+                height: height,
                 width: width*0.8, 
                 hintText: "Fuel", 
                 suffix: "ltr"
               ),
               const SizedBox(height: 13,),
               InputBox(
+                height: height,
                 width: width*0.8, 
                 hintText: "Speed", 
                 suffix: "km/hr"
@@ -83,6 +86,7 @@ class MyHomePage extends StatelessWidget {
                 title: "Range"
               ),
               InputBox(
+                height: height,
                 width: width*0.8,
                 hintText: "Fuel in Tank",
                 suffix: "ltr"

@@ -44,7 +44,7 @@ TableRow resultRow(prefix, result, suffix) {
             fontSize: 32,
             color: Color(0xFF41CD70)
             )),
-            Text(suffix, style: style),
+            Text(" " + suffix, style: style),
           ],
         )
       ],
@@ -90,6 +90,7 @@ class InputBox extends StatelessWidget {
   const InputBox({
     super.key,
     required this.width,
+    required this.height,
     required this.hintText,
     required this.suffix
   });
@@ -97,14 +98,17 @@ class InputBox extends StatelessWidget {
   final String hintText;
   final String suffix;
 
+  final double height;
   final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: height*0.05,
       child: TextField(
         cursorColor: Colors.white10,
+        cursorHeight: 0,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
@@ -119,18 +123,19 @@ class InputBox extends StatelessWidget {
             borderSide: BorderSide(color: Color(0xAA8C7B91), width: 2.0),
           ),
           isDense: true,
-          contentPadding: const EdgeInsets.symmetric(vertical: 12,horizontal: 18),
+          filled: true,
+          fillColor: Color(0x09FFFFF6),
           hintText: hintText,
           hintStyle: const TextStyle(
             fontFamily: "Iceland",
-            fontSize: 20,
-            color: Colors.white
+            fontSize: 32,
+            color: Color(0xF0D2D2D2)
           ),
           suffix: Text(suffix),
         ),
         style: const TextStyle(
           fontFamily: "Iceland",
-          fontSize: 20,
+          fontSize: 32,
           color: Colors.white
         ),
       ),
