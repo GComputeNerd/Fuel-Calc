@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -33,61 +35,123 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF263238),
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(height: 30,),
-            Heading(
-              height: height*0.04,
-              imgPath: "lib/icons/sedan.png",
-              title: "Mileage",
-            ),
-            InputBox(
-              width: width*0.8,
-              hintText: "Distance",
-              suffix: "km",
-            ),
-            const SizedBox(height: 5,),
-            const Text(
-              "per",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 19
+        child: ListView( 
+          children: [Column(
+            children: [
+              SizedBox(height: 30,),
+              Heading(
+                height: height*0.04,
+                imgPath: "lib/icons/sedan.png",
+                title: "Mileage",
               ),
-            ),
-            const SizedBox(height: 5,),
-            InputBox(
-              width: width*0.8, 
-              hintText: "Fuel", 
-              suffix: "ltr"
-            ),
-            const SizedBox(height: 13,),
-            InputBox(
-              width: width*0.8, 
-              hintText: "Speed", 
-              suffix: "km/hr"
-            ),
-            Container(
-              width: width*0.82,
-              height: height*0.007,
-              margin: EdgeInsets.symmetric(vertical: 13),
-              decoration: BoxDecoration(
-                color: Color(0xFF404040),
-                borderRadius: BorderRadius.circular(50)
+              InputBox(
+                width: width*0.8,
+                hintText: "Distance",
+                suffix: "km",
               ),
-            ),
-            Heading(
-              height: height*0.06,
-              imgPath: "lib/icons/range.png",
-              title: "Range"
-            ),
-            InputBox(
-              width: width*0.8,
-              hintText: "Fuel in Tank",
-              suffix: "ltr"
-            )
-          ],
+              const SizedBox(height: 5,),
+              const Text(
+                "per",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19
+                ),
+              ),
+              const SizedBox(height: 5,),
+              InputBox(
+                width: width*0.8, 
+                hintText: "Fuel", 
+                suffix: "ltr"
+              ),
+              const SizedBox(height: 13,),
+              InputBox(
+                width: width*0.8, 
+                hintText: "Speed", 
+                suffix: "km/hr"
+              ),
+              Container(
+                width: width*0.82,
+                height: height*0.007,
+                margin: EdgeInsets.symmetric(vertical: 13),
+                decoration: BoxDecoration(
+                  color: Color(0xFF404040),
+                  borderRadius: BorderRadius.circular(50)
+                ),
+              ),
+              Heading(
+                height: height*0.06,
+                imgPath: "lib/icons/range.png",
+                title: "Range"
+              ),
+              InputBox(
+                width: width*0.8,
+                hintText: "Fuel in Tank",
+                suffix: "ltr"
+              ),
+              const SizedBox(height: 5,),
+              Result(
+                children: [
+                  ResultRow("Range", "XXX", "km"),
+                  ResultRow("Time Left", "XXX", "hrs")
+                ],
+              )
+            ],
+          )]
         ),
       ),
+    );
+  }
+}
+
+TableRow ResultRow(prefix, result, suffix) {
+    TextStyle style = const TextStyle(
+        fontFamily: "Iceland",
+        fontSize: 32,
+        color: Colors.white
+      );
+
+    return TableRow(
+      children: [
+        Text(prefix,
+        style: style,
+        textAlign: TextAlign.right,),
+        Text(":",
+        style: style,
+        textAlign: TextAlign.center,),
+        Row(
+          children: [
+            Text(result, style: const TextStyle(
+              fontFamily: "Iceland",
+            fontSize: 32,
+            color: Color(0xFF41CD70)
+            )),
+            Text(suffix, style: style),
+          ],
+        )
+      ],
+    );
+}
+
+class Result extends StatelessWidget {
+  const Result({
+    super.key,
+
+    required this.children,
+  });
+
+  final List<TableRow> children;
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Table(
+      columnWidths: {
+        0: FlexColumnWidth(10),
+        1: FlexColumnWidth(1),
+        2: FlexColumnWidth(10),
+      },
+      children: children,
     );
   }
 }
