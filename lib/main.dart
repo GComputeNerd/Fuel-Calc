@@ -1,34 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_calc/calculations.dart';
+import 'package:provider/provider.dart';
 import 'package:fuel_calc/elements.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ChangeNotifierProvider(
+      create: (context) => FuelHandler(),
+      child: const MyHomePage(),
+    ),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
+  State<MyHomePage> createState() => _MyHomePage();
+}
+
+class _MyHomePage extends State<MyHomePage> {
+  @override
   Widget build(BuildContext context) {
+    var fuelState = context.watch<FuelHandler>();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -38,6 +43,7 @@ class MyHomePage extends StatelessWidget {
         child: ListView( 
           children: [Column(
             children: [
+              SizedBox(height: height*0.05,),
               Heading(
                 height: height*0.04,
                 imgPath: "lib/icons/sedan.png",
@@ -48,6 +54,7 @@ class MyHomePage extends StatelessWidget {
                 width: width*0.8,
                 hintText: "Distance",
                 suffix: "km",
+                controller: fuelState.mileageDistance,
               ),
               const SizedBox(height: 5,),
               const Text(
@@ -62,14 +69,16 @@ class MyHomePage extends StatelessWidget {
                 height: height,
                 width: width*0.8, 
                 hintText: "Fuel", 
-                suffix: "ltr"
+                suffix: "ltr",
+                controller: fuelState.mileageFuel,
               ),
               const SizedBox(height: 13,),
               InputBox(
                 height: height,
                 width: width*0.8, 
                 hintText: "Speed", 
-                suffix: "km/hr"
+                suffix: "km/hr",
+                controller: fuelState.avgSpeed,
               ),
               Container(
                 width: width*0.82,
@@ -89,12 +98,13 @@ class MyHomePage extends StatelessWidget {
                 height: height,
                 width: width*0.8,
                 hintText: "Fuel in Tank",
-                suffix: "ltr"
+                suffix: "ltr",
+                controller: fuelState.fuelLeft,
               ),
               const SizedBox(height: 5,),
               Result(
                 children: [
-                  resultRow("Range", "XXX", "km"),
+                  resultRow("Range", fuelState.getRange(), "km"),
                   resultRow("Time Left", "XXX", "hrs")
                 ],
               )

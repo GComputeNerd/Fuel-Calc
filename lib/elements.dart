@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:fuel_calc/calculations.dart';
 
 class Result extends StatelessWidget {
   const Result({
@@ -92,7 +94,8 @@ class InputBox extends StatelessWidget {
     required this.width,
     required this.height,
     required this.hintText,
-    required this.suffix
+    required this.suffix,
+    required this.controller,
   });
 
   final String hintText;
@@ -101,8 +104,12 @@ class InputBox extends StatelessWidget {
   final double height;
   final double width;
 
+  final TextEditingController controller;
+
   @override
   Widget build(BuildContext context) {
+    var fuelState = context.watch<FuelHandler>();
+
     return SizedBox(
       width: width,
       height: height*0.05,
@@ -138,6 +145,10 @@ class InputBox extends StatelessWidget {
           fontSize: 32,
           color: Colors.white
         ),
+        controller: controller,
+        onChanged: (text) => {
+          fuelState.notifyListeners()
+        },
       ),
     );
   }
