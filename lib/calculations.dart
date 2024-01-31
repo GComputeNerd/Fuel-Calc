@@ -21,8 +21,11 @@ class FuelHandler extends ChangeNotifier {
     var mfuel = mileageFuel.text.toString();
     var fuel = fuelLeft.text.toString();
 
-    if (text != "") {
-      return text;
+    if (text.length * mfuel.length * fuel.length != 0) {
+      num mileage = num.parse(text) / num.parse(mfuel);
+      num range = num.parse(fuel) * mileage;
+
+      return range.toString();
     } else {
       return "XXX";
     }
