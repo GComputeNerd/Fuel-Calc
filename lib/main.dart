@@ -40,17 +40,36 @@ class _MyHomePage extends State<MyHomePage> {
 
     return Scaffold(
       backgroundColor: const Color(0xFF263238),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            fuelState.currentMenu = index;
-          });
-        },
-        selectedIndex: fuelState.currentMenu,
-        destinations: <Widget>[
-          NavigationDestination(icon: Icon(Icons.home_outlined), label: "Home"),
-          NavigationDestination(icon: Icon(Icons.message_outlined), label: "Message")
-        ],
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
+            (Set<MaterialState> states) => const TextStyle(color: Colors.white)
+          ),
+        ),
+        child: NavigationBar(
+          backgroundColor: Color(0xFF263238),
+          indicatorColor: Color(0xFF00838F),
+          onDestinationSelected: (int index) {
+            setState(() {
+              fuelState.currentMenu = index;
+            });
+          },
+          selectedIndex: fuelState.currentMenu,
+          destinations: <Widget>[
+            NavigationDestination(
+              icon: Icon(
+                Icons.home_outlined,
+                color: Colors.white,),
+              label: "Home",
+            ),
+            NavigationDestination(
+              icon: Icon(
+                Icons.message_outlined,
+                color: Colors.white,),
+              label: "Message"
+            )
+          ],
+        ),
       ),
       body: Center(
         child: ListView( 
