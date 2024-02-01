@@ -25,7 +25,11 @@ class SelectedMenu extends StatelessWidget {
         width: width,
         fuelState: fuelState);
     } else {
-      return FuelMenu();
+      return FuelMenu(
+        height: height,
+        width: width,
+        fuelState: fuelState,
+      );
     }
   }
 }
@@ -77,14 +81,35 @@ class RangeMenu extends StatelessWidget {
 }
 
 class FuelMenu extends StatelessWidget {
-  const FuelMenu({super.key});
+  const FuelMenu({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.fuelState,
+  });
+
+  final double height;
+  final double width;
+  final FuelHandler fuelState;
 
   @override
   Widget build(BuildContext context) {
-    return Text("YESSSS",
-    style: TextStyle(
-      fontSize: 32,
-      color: Colors.white,
-    ),);
+    return Column(
+      children: [
+        Heading(
+          height: height,
+          imgPath: 'lib/icons/fuel.png',
+          title: 'Fuel'),
+          InputBox(
+            width: width,
+            hintText: "Distance",
+            suffix: "km",
+            controller: fuelState.fuelDistanceController,
+          ),
+          Result(
+            children: [resultRow("Fuel Needed", fuelState.getFuelRequired(), "ltr")]
+          )
+      ],
+    );
   }
 }

@@ -48,25 +48,25 @@ class _MyHomePage extends State<MyHomePage> {
         ),
         child: NavigationBar(
           backgroundColor: Color(0xFF263238),
-          indicatorColor: Color(0xFF00838F),
+          indicatorColor: Color(0xFF37474F),
           onDestinationSelected: (int index) {
             setState(() {
               fuelState.currentMenu = index;
             });
           },
           selectedIndex: fuelState.currentMenu,
-          destinations: <Widget>[
+          destinations: const <Widget>[
             NavigationDestination(
-              icon: Icon(
-                Icons.home_outlined,
+              icon: ImageIcon(
+                AssetImage('lib/icons/distance.png'),
                 color: Colors.white,),
-              label: "Home",
+              label: "Range",
             ),
             NavigationDestination(
-              icon: Icon(
-                Icons.message_outlined,
+              icon: ImageIcon(
+                AssetImage('lib/icons/fuel.png'),
                 color: Colors.white,),
-              label: "Message"
+              label: "Fuel"
             )
           ],
         ),
