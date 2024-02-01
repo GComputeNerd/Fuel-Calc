@@ -24,8 +24,13 @@ class SelectedMenu extends StatelessWidget {
         height: height,
         width: width,
         fuelState: fuelState);
-    } else {
+    } else if (currentMenu == 1){
       return FuelMenu(
+        height: height,
+        width: width,
+        fuelState: fuelState);
+    } else {
+      return CostMenu(
         height: height,
         width: width,
         fuelState: fuelState,
@@ -108,6 +113,47 @@ class FuelMenu extends StatelessWidget {
           ),
           Result(
             children: [resultRow("Fuel Needed", fuelState.getFuelRequired(), "ltr")]
+          )
+      ],
+    );
+  }
+}
+
+class CostMenu extends StatelessWidget {
+  const CostMenu({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.fuelState,
+  });
+
+  final double height;
+  final double width;
+  final FuelHandler fuelState;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Heading(
+          height: height,
+          imgPath: 'lib/icons/money.png',
+          title: 'Cost'),
+          InputBox(
+            width: width,
+            hintText: "Distance",
+            suffix: "km",
+            controller: fuelState.costDistanceController,
+          ),
+          const SizedBox(height: 13,),
+          InputBox(
+            width: width,
+            hintText: "Fuel Rate",
+            suffix: "Rs/ltr",
+            controller: fuelState.costRateController,
+          ),
+          Result(
+            children: [resultRow("Trip Cost", fuelState.getTripCost(), "Rs")]
           )
       ],
     );

@@ -67,6 +67,12 @@ class _MyHomePage extends State<MyHomePage> {
                 AssetImage('lib/icons/fuel.png'),
                 color: Colors.white,),
               label: "Fuel"
+            ),
+            NavigationDestination(
+              icon: ImageIcon(
+                AssetImage('lib/icons/money.png'),
+                color: Colors.white,),
+              label: "Cost"
             )
           ],
         ),

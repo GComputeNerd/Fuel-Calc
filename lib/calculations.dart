@@ -8,6 +8,9 @@ class FuelHandler extends ChangeNotifier {
 
   final fuelDistanceController = TextEditingController();
 
+  final costDistanceController = TextEditingController();
+  final costRateController = TextEditingController();
+
   int currentMenu = 0;
 
   @override
@@ -17,6 +20,9 @@ class FuelHandler extends ChangeNotifier {
     avgSpeed.dispose();
     fuelLeft.dispose();
     fuelDistanceController.dispose();
+
+    costDistanceController.dispose();
+    costRateController.dispose();
 
     super.dispose();
   }
@@ -63,6 +69,20 @@ class FuelHandler extends ChangeNotifier {
 
     if (mileage != "XXX" && distance.isNotEmpty) {
       return (num.parse(distance) / num.parse(mileage)).toString();
+    } else {
+      return "XXX";
+    }
+  }
+
+  String getTripCost() {
+    var mileage = getMileage();
+    var distance = costDistanceController.text.toString();
+    var fuelRate = costRateController.text.toString();
+
+    if (mileage != "XXX" && distance.length * fuelRate.length != 0) {
+      num distanceRate = num.parse(fuelRate) / num.parse(mileage);
+
+      return (num.parse(distance) * distanceRate).toString();
     } else {
       return "XXX";
     }
