@@ -92,7 +92,6 @@ class InputBox extends StatelessWidget {
   const InputBox({
     super.key,
     required this.width,
-    required this.height,
     required this.hintText,
     required this.suffix,
     required this.controller,
@@ -100,8 +99,6 @@ class InputBox extends StatelessWidget {
 
   final String hintText;
   final String suffix;
-
-  final double height;
   final double width;
 
   final TextEditingController controller;
@@ -109,6 +106,8 @@ class InputBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var fuelState = context.watch<FuelHandler>();
+
+    final height = MediaQuery.of(context).size.height;
 
     return SizedBox(
       width: width,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fuel_calc/calculations.dart';
 import 'package:provider/provider.dart';
 import 'package:fuel_calc/elements.dart';
+import 'package:fuel_calc/fuel_sections.dart';
 
 void main() {
   runApp(
@@ -39,6 +40,18 @@ class _MyHomePage extends State<MyHomePage> {
 
     return Scaffold(
       backgroundColor: const Color(0xFF263238),
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            fuelState.currentMenu = index;
+          });
+        },
+        selectedIndex: fuelState.currentMenu,
+        destinations: <Widget>[
+          NavigationDestination(icon: Icon(Icons.home_outlined), label: "Home"),
+          NavigationDestination(icon: Icon(Icons.message_outlined), label: "Message")
+        ],
+      ),
       body: Center(
         child: ListView( 
           children: [Column(
@@ -50,7 +63,6 @@ class _MyHomePage extends State<MyHomePage> {
                 title: "Mileage",
               ),
               InputBox(
-                height: height,
                 width: width*0.8,
                 hintText: "Distance",
                 suffix: "km",
@@ -66,19 +78,10 @@ class _MyHomePage extends State<MyHomePage> {
               ),
               const SizedBox(height: 5,),
               InputBox(
-                height: height,
                 width: width*0.8, 
                 hintText: "Fuel", 
                 suffix: "ltr",
                 controller: fuelState.mileageFuel,
-              ),
-              const SizedBox(height: 13,),
-              InputBox(
-                height: height,
-                width: width*0.8, 
-                hintText: "Speed", 
-                suffix: "km/hr",
-                controller: fuelState.avgSpeed,
               ),
               Container(
                 width: width*0.82,
@@ -89,24 +92,10 @@ class _MyHomePage extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(50)
                 ),
               ),
-              Heading(
-                height: height*0.06,
-                imgPath: "lib/icons/range.png",
-                title: "Range"
-              ),
-              InputBox(
-                height: height,
-                width: width*0.8,
-                hintText: "Fuel in Tank",
-                suffix: "ltr",
-                controller: fuelState.fuelLeft,
-              ),
-              const SizedBox(height: 5,),
-              Result(
-                children: [
-                  resultRow("Range", fuelState.getRange(), "km"),
-                  resultRow("Time Left", fuelState.getTimeLeft(), "hrs")
-                ],
+              SelectedMenu(
+                height: height*0.06, 
+                width: width*0.8, 
+                fuelState: fuelState
               )
             ],
           )]

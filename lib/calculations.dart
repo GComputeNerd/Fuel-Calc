@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class FuelHandler extends ChangeNotifier {
   final mileageDistance = TextEditingController();
   final mileageFuel = TextEditingController();
   final avgSpeed = TextEditingController();
   final fuelLeft = TextEditingController();
+
+  int currentMenu = 0;
+
   @override
   void dispose() {
     mileageDistance.dispose();
