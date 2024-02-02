@@ -22,21 +22,16 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       home: ChangeNotifierProvider(
-      create: (context) => FuelHandler(),
-      child: const MyHomePage(),
+        create: (context) => FuelHandler(),
+        child: const MyHomePage(),
     ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePage();
-}
-
-class _MyHomePage extends State<MyHomePage> {
+  
   @override
   Widget build(BuildContext context) {
     var fuelState = context.watch<FuelHandler>();
@@ -55,9 +50,8 @@ class _MyHomePage extends State<MyHomePage> {
           backgroundColor: Color(0xFF263238),
           indicatorColor: Color(0xFF37474F),
           onDestinationSelected: (int index) {
-            setState(() {
-              fuelState.currentMenu = index;
-            });
+            fuelState.currentMenu = index;
+            fuelState.updateHandler();
           },
           selectedIndex: fuelState.currentMenu,
           destinations: const <Widget>[
@@ -131,6 +125,29 @@ class _MyHomePage extends State<MyHomePage> {
           )]
         ),
       ),
+      floatingActionButton: ClearButton(),
+    );
+  }
+}
+
+class ClearButton extends StatelessWidget {
+  const ClearButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      child: Icon(
+        Icons.refresh_outlined,
+        color: Colors.white,
+        size: 30,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20))
+      ),
+      backgroundColor: Color(0xFF616161),
+      onPressed: null
     );
   }
 }
