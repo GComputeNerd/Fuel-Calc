@@ -2,3 +2,7 @@
 - [ ] Add clear all button
 - [ ] Handle overflow text
 - [ ] Maybe replace table row with flex row
+- [ ] Make portrait only
+- [ ] hours display is not mod 60
+- [ ] Add cost to fuel tab
+- [ ] fix fuel tab text. add wrapping
