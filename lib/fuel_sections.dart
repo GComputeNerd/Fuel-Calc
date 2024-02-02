@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_calc/elements.dart';
 import 'package:fuel_calc/calculations.dart';
-import 'package:provider/provider.dart';
 
 class SelectedMenu extends StatelessWidget {
   const SelectedMenu({

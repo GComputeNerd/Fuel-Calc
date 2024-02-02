@@ -164,7 +164,7 @@ class InputBox extends StatelessWidget {
         ),
         controller: controller,
         onChanged: (text) => {
-          fuelState.notifyListeners()
+          fuelState.updateHandler()
         },
       ),
     );

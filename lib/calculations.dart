@@ -83,4 +83,8 @@ class FuelHandler extends ChangeNotifier {
       return "XXX";
     }
   }
+
+  void updateHandler() {
+    notifyListeners();
+  }
 }
