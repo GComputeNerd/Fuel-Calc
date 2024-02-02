@@ -2,3 +2,4 @@
 - [ ] Add clear all button
 - [ ] hours display is not mod 60
 - [ ] Allow Customizing Units
+- [ ] Add splash screen
