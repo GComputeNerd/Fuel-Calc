@@ -1,4 +1,3 @@
-- [ ] Update Cursor positioning and size for InputBox
 - [ ] hours display is not mod 60
 - [ ] Allow Customizing Units
 - [ ] Add splash screen

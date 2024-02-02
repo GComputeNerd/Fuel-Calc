@@ -131,9 +131,9 @@ class InputBox extends StatelessWidget {
       width: width,
       height: height*0.05,
       child: TextField(
-        cursorColor: Colors.white10,
-        cursorHeight: 0,
+        cursorColor: Color(0xAAFFFFFF),
         keyboardType: TextInputType.number,
+        cursorHeight: fuelState.showCursor(controller) ? height*0.015 : 0,
         decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -153,6 +153,7 @@ class InputBox extends StatelessWidget {
           hintStyle: const TextStyle(
             fontFamily: "Iceland",
             fontSize: 32,
+            height: 0.5,
             color: Color(0xF0D2D2D2)
           ),
           suffix: Text(suffix),
@@ -160,7 +161,8 @@ class InputBox extends StatelessWidget {
         style: const TextStyle(
           fontFamily: "Iceland",
           fontSize: 32,
-          color: Colors.white
+          color: Colors.white,
+          height: 0.5
         ),
         controller: controller,
         onChanged: (text) => {

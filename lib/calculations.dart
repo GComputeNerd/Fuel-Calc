@@ -47,6 +47,14 @@ class FuelHandler extends ChangeNotifier {
     return count == 3 ? false : true;
   }
 
+  bool showCursor(TextEditingController controller) {
+    if (controller.text.isNotEmpty) {
+      return true;
+    }
+
+    return false;
+  }
+
   void resetControllers() {
     mileageDistanceController.clear();
     mileageFuelController.clear();
