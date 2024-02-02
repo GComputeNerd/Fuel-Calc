@@ -14,6 +14,8 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      border: TableBorder.all(),
       columnWidths: const {
         0: FlexColumnWidth(10),
         1: FlexColumnWidth(1),
@@ -24,27 +26,32 @@ class Result extends StatelessWidget {
   }
 }
 
-TableRow resultRow(prefix, result, suffix) {
+TableRow resultRow(prefix, result, suffix, context) {
     TextStyle style = const TextStyle(
         fontFamily: "Iceland",
         fontSize: 32,
         color: Colors.white
       );
 
+    var width = MediaQuery.of(context).size.width;
+
     return TableRow(
       children: [
-        Text(prefix,
-        style: style,
-        textAlign: TextAlign.right,),
+        Container(
+          width: width*0.2,
+          child: Text(prefix,
+          style: style,
+          textAlign: TextAlign.right,),
+        ),
         Text(":",
         style: style,
         textAlign: TextAlign.center,),
         Row(
           children: [
             Text(result, style: const TextStyle(
-              fontFamily: "Iceland",
-            fontSize: 32,
-            color: Color(0xFF41CD70)
+                fontFamily: "Iceland",
+                fontSize: 32,
+                color: Color(0xFF41CD70)
             )),
             Text(" " + suffix, style: style),
           ],

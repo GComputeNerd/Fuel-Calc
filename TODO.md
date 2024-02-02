@@ -6,3 +6,4 @@
 - [ ] hours display is not mod 60
 - [ ] Add cost to fuel tab
 - [ ] fix fuel tab text. add wrapping
+- [ ] Allow Customizing Units

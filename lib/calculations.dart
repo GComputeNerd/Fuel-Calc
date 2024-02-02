@@ -7,8 +7,6 @@ class FuelHandler extends ChangeNotifier {
   final fuelLeft = TextEditingController();
 
   final fuelDistanceController = TextEditingController();
-
-  final costDistanceController = TextEditingController();
   final costRateController = TextEditingController();
 
   int currentMenu = 0;
@@ -20,8 +18,6 @@ class FuelHandler extends ChangeNotifier {
     avgSpeed.dispose();
     fuelLeft.dispose();
     fuelDistanceController.dispose();
-
-    costDistanceController.dispose();
     costRateController.dispose();
 
     super.dispose();
@@ -45,7 +41,7 @@ class FuelHandler extends ChangeNotifier {
     if ( mileage != "XXX" && fuel.isNotEmpty) {
       num range = num.parse(fuel) * num.parse(mileage);
 
-      return range.toString();
+      return range.toStringAsFixed(2);
     } else {
       return "XXX";
     }
@@ -57,7 +53,7 @@ class FuelHandler extends ChangeNotifier {
 
     if (rangeString != "XXX" && speed.isNotEmpty) {
       num timeLeft = num.parse(rangeString) / num.parse(speed);
-      return timeLeft.toString();
+      return timeLeft.toStringAsFixed(2);
     } else {
       return "XXX";
     }
@@ -68,7 +64,7 @@ class FuelHandler extends ChangeNotifier {
     var distance = fuelDistanceController.text.toString();
 
     if (mileage != "XXX" && distance.isNotEmpty) {
-      return (num.parse(distance) / num.parse(mileage)).toString();
+      return (num.parse(distance) / num.parse(mileage)).toStringAsFixed(2);
     } else {
       return "XXX";
     }
@@ -76,13 +72,13 @@ class FuelHandler extends ChangeNotifier {
 
   String getTripCost() {
     var mileage = getMileage();
-    var distance = costDistanceController.text.toString();
+    var distance = fuelDistanceController.text.toString();
     var fuelRate = costRateController.text.toString();
 
     if (mileage != "XXX" && distance.length * fuelRate.length != 0) {
       num distanceRate = num.parse(fuelRate) / num.parse(mileage);
 
-      return (num.parse(distance) * distanceRate).toString();
+      return (num.parse(distance) * distanceRate).toStringAsFixed(2);
     } else {
       return "XXX";
     }

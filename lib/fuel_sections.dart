@@ -76,8 +76,8 @@ class RangeMenu extends StatelessWidget {
         const SizedBox(height: 5,),
         Result(
           children: [
-            resultRow("Range", fuelState.getRange(), "km"),
-            resultRow("Time Left", fuelState.getTimeLeft(), "hrs")
+            resultRow("Range", fuelState.getRange(), "km", context),
+            resultRow("Time Left", fuelState.getTimeLeft(), "hrs", context)
           ],
         ),
       ],
@@ -112,7 +112,7 @@ class FuelMenu extends StatelessWidget {
             controller: fuelState.fuelDistanceController,
           ),
           Result(
-            children: [resultRow("Fuel Needed", fuelState.getFuelRequired(), "ltr")]
+            children: [resultRow("Fuel Needed", fuelState.getFuelRequired(), "ltr", context)]
           )
       ],
     );
@@ -143,7 +143,7 @@ class CostMenu extends StatelessWidget {
             width: width,
             hintText: "Distance",
             suffix: "km",
-            controller: fuelState.costDistanceController,
+            controller: fuelState.fuelDistanceController,
           ),
           const SizedBox(height: 13,),
           InputBox(
@@ -153,7 +153,7 @@ class CostMenu extends StatelessWidget {
             controller: fuelState.costRateController,
           ),
           Result(
-            children: [resultRow("Trip Cost", fuelState.getTripCost(), "Rs")]
+            children: [resultRow("Trip Cost", fuelState.getTripCost(), "Rs", context)]
           )
       ],
     );
