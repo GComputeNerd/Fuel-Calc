@@ -111,6 +111,7 @@ class FuelMenu extends StatelessWidget {
             suffix: "km",
             controller: fuelState.fuelDistanceController,
           ),
+          const SizedBox(height: 5,),
           Result(
             children: [resultRow("Fuel Needed", fuelState.getFuelRequired(), "ltr", context)]
           )
@@ -152,6 +153,7 @@ class CostMenu extends StatelessWidget {
             suffix: "Rs/ltr",
             controller: fuelState.costRateController,
           ),
+          const SizedBox(height: 5,),
           Result(
             children: [resultRow("Trip Cost", fuelState.getTripCost(), "Rs", context)]
           )

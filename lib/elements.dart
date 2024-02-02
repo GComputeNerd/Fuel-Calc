@@ -15,7 +15,6 @@ class Result extends StatelessWidget {
   Widget build(BuildContext context) {
     return Table(
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      border: TableBorder.all(),
       columnWidths: const {
         0: FlexColumnWidth(10),
         1: FlexColumnWidth(1),
@@ -30,6 +29,7 @@ TableRow resultRow(prefix, result, suffix, context) {
     TextStyle style = const TextStyle(
         fontFamily: "Iceland",
         fontSize: 32,
+        height: 1,
         color: Colors.white
       );
 
@@ -38,7 +38,8 @@ TableRow resultRow(prefix, result, suffix, context) {
     return TableRow(
       children: [
         Container(
-          width: width*0.2,
+          width: width*0.01,
+          margin: EdgeInsets.only(left: width*0.08),
           child: Text(prefix,
           style: style,
           textAlign: TextAlign.right,),
@@ -46,15 +47,25 @@ TableRow resultRow(prefix, result, suffix, context) {
         Text(":",
         style: style,
         textAlign: TextAlign.center,),
-        Row(
-          children: [
-            Text(result, style: const TextStyle(
-                fontFamily: "Iceland",
-                fontSize: 32,
-                color: Color(0xFF41CD70)
-            )),
-            Text(" " + suffix, style: style),
-          ],
+        Container(
+          width: width*0.01,
+          margin: EdgeInsets.only(right: width*0.08),
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: result,
+                  style: const TextStyle(
+                    fontFamily: "Iceland",
+                    fontSize: 32,
+                    color: Color(0xFF41CD70)
+                )),
+                TextSpan(
+                  text: " " + suffix,
+                  style: style),
+              ],
+            ),
+          ),
         )
       ],
     );
