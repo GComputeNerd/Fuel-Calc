@@ -63,14 +63,14 @@ class RangeMenu extends StatelessWidget {
           width: width,
           hintText: "Fuel in Tank",
           suffix: "ltr",
-          controller: fuelState.fuelLeft,
+          controller: fuelState.fuelLeftController,
         ),
         const SizedBox(height: 13,),
         InputBox(
           width: width, 
           hintText: "Avg. Speed", 
           suffix: "km/hr",
-          controller: fuelState.avgSpeed,
+          controller: fuelState.avgSpeedController,
         ),
         const SizedBox(height: 5,),
         Result(

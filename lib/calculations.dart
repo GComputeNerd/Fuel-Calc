@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class FuelHandler extends ChangeNotifier {
-  final mileageDistance = TextEditingController();
-  final mileageFuel = TextEditingController();
-  final avgSpeed = TextEditingController();
-  final fuelLeft = TextEditingController();
+  final mileageDistanceController = TextEditingController();
+  final mileageFuelController = TextEditingController();
+  final avgSpeedController = TextEditingController();
+  final fuelLeftController = TextEditingController();
 
   final fuelDistanceController = TextEditingController();
   final costRateController = TextEditingController();
@@ -13,10 +13,10 @@ class FuelHandler extends ChangeNotifier {
 
   @override
   void dispose() {
-    mileageDistance.dispose();
-    mileageFuel.dispose();
-    avgSpeed.dispose();
-    fuelLeft.dispose();
+    mileageDistanceController.dispose();
+    mileageFuelController.dispose();
+    avgSpeedController.dispose();
+    fuelLeftController.dispose();
     fuelDistanceController.dispose();
     costRateController.dispose();
 
@@ -30,12 +30,26 @@ class FuelHandler extends ChangeNotifier {
       return false;
     }
 
-    return true;
+    int count = 0;
+
+    if (mileageDistanceController.text.isEmpty && mileageFuelController.text.isEmpty) {
+      count++;
+    }
+
+    if (avgSpeedController.text.isEmpty && fuelLeftController.text.isEmpty) {
+      count++;
+    }
+
+    if (fuelDistanceController.text.isEmpty && costRateController.text.isEmpty) {
+      count++;
+    }
+
+    return count == 3 ? false : true;
   }
 
   String getMileage() {
-    var dist = mileageDistance.text.toString();
-    var fuel = mileageFuel.text.toString();
+    var dist = mileageDistanceController.text.toString();
+    var fuel = mileageFuelController.text.toString();
 
     if (dist.length * fuel.length != 0) {
       return (num.parse(dist) / num.parse(fuel)).toString();
@@ -45,7 +59,7 @@ class FuelHandler extends ChangeNotifier {
   }
 
   String getRange() {
-    var fuel = fuelLeft.text.toString();
+    var fuel = fuelLeftController.text.toString();
     var mileage = getMileage();
 
     if ( mileage != "XXX" && fuel.isNotEmpty) {
@@ -59,7 +73,7 @@ class FuelHandler extends ChangeNotifier {
 
   String getTimeLeft() {
     var rangeString = getRange();
-    var speed = avgSpeed.text.toString();
+    var speed = avgSpeedController.text.toString();
 
     if (rangeString != "XXX" && speed.isNotEmpty) {
       num timeLeft = num.parse(rangeString) / num.parse(speed);

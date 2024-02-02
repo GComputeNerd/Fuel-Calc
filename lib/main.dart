@@ -95,7 +95,7 @@ class _MyHomePage extends State<MyHomePage> {
                 width: width*0.8,
                 hintText: "Distance",
                 suffix: "km",
-                controller: fuelState.mileageDistance,
+                controller: fuelState.mileageDistanceController,
               ),
               const SizedBox(height: 5,),
               const Text(
@@ -110,7 +110,7 @@ class _MyHomePage extends State<MyHomePage> {
                 width: width*0.8, 
                 hintText: "Fuel", 
                 suffix: "ltr",
-                controller: fuelState.mileageFuel,
+                controller: fuelState.mileageFuelController,
               ),
               Container(
                 width: width*0.82,
