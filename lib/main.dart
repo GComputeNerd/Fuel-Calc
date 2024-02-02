@@ -29,9 +29,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
-  
+
+  @override
+  State<MyHomePage> createState() => _MyHomePage();
+}
+
+class _MyHomePage extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var fuelState = context.watch<FuelHandler>();
@@ -125,7 +130,7 @@ class MyHomePage extends StatelessWidget {
           )]
         ),
       ),
-      floatingActionButton: ClearButton(),
+      floatingActionButton: fuelState.showClearButton(context) ? ClearButton() : null,
     );
   }
 }

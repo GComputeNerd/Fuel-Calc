@@ -23,6 +23,16 @@ class FuelHandler extends ChangeNotifier {
     super.dispose();
   }
 
+  bool showClearButton(BuildContext context) {
+    var isKeyboardActive = MediaQuery.of(context).viewInsets.bottom != 0.0;
+
+    if (isKeyboardActive) {
+      return false;
+    }
+
+    return true;
+  }
+
   String getMileage() {
     var dist = mileageDistance.text.toString();
     var fuel = mileageFuel.text.toString();
