@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:fuel_calc/calculations.dart';
 import 'package:provider/provider.dart';
 import 'package:fuel_calc/elements.dart';
+import 'package:flutter/services.dart';
 import 'package:fuel_calc/fuel_sections.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
   runApp(
     const MyApp()
   );
@@ -15,6 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       home: ChangeNotifierProvider(
       create: (context) => FuelHandler(),
