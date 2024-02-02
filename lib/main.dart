@@ -142,17 +142,21 @@ class ClearButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fuelState = context.watch<FuelHandler>();
+
     return FloatingActionButton(
-      child: Icon(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20))
+      ),
+      backgroundColor: const Color(0xFF616161),
+      onPressed: () => {
+        fuelState.resetControllers()
+      },
+      child: const Icon(
         Icons.refresh_outlined,
         color: Colors.white,
         size: 30,
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20))
-      ),
-      backgroundColor: Color(0xFF616161),
-      onPressed: null
     );
   }
 }

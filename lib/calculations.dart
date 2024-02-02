@@ -47,6 +47,17 @@ class FuelHandler extends ChangeNotifier {
     return count == 3 ? false : true;
   }
 
+  void resetControllers() {
+    mileageDistanceController.clear();
+    mileageFuelController.clear();
+    avgSpeedController.clear();
+    fuelLeftController.clear();
+    fuelDistanceController.clear();
+    costRateController.clear();
+
+    notifyListeners();
+  }
+
   String getMileage() {
     var dist = mileageDistanceController.text.toString();
     var fuel = mileageFuelController.text.toString();
