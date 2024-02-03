@@ -159,7 +159,7 @@ class InputBox extends StatelessWidget {
         style: TextStyle(
           fontFamily: "Iceland",
           fontSize: 32,
-          height: height*0.001,
+          height: height*0.0008,
           color: Colors.white,
         ),
         controller: controller,
