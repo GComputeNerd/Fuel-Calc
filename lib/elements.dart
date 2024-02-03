@@ -126,14 +126,13 @@ class InputBox extends StatelessWidget {
     var fuelState = context.watch<FuelHandler>();
 
     final height = MediaQuery.of(context).size.height;
+    final cellHeight = height/100;
 
     return SizedBox(
       width: width,
-      height: height*0.05,
       child: TextField(
         cursorColor: Color(0xAAFFFFFF),
         keyboardType: TextInputType.number,
-        cursorHeight: height*0.015,
         showCursor: fuelState.showCursor(controller),
         decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
@@ -154,16 +153,15 @@ class InputBox extends StatelessWidget {
           hintStyle: const TextStyle(
             fontFamily: "Iceland",
             fontSize: 32,
-            height: 0.5,
             color: Color(0xF0D2D2D2)
           ),
           suffix: Text(suffix),
         ),
-        style: const TextStyle(
+        style: TextStyle(
           fontFamily: "Iceland",
           fontSize: 32,
+          height: cellHeight*0.1,
           color: Colors.white,
-          height: 0.5
         ),
         controller: controller,
         onChanged: (text) => {
