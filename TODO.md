@@ -1,4 +1,3 @@
-- [ ] hours display is not mod 60
 - [ ] Allow Customizing Units
 - [ ] Add splash screen
 - [ ] Add icon
