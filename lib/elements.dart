@@ -126,7 +126,6 @@ class InputBox extends StatelessWidget {
     var fuelState = context.watch<FuelHandler>();
 
     final height = MediaQuery.of(context).size.height;
-    final cellHeight = height/100;
 
     return SizedBox(
       width: width,
@@ -160,7 +159,7 @@ class InputBox extends StatelessWidget {
         style: TextStyle(
           fontFamily: "Iceland",
           fontSize: 32,
-          height: cellHeight*0.1,
+          height: height*0.001,
           color: Colors.white,
         ),
         controller: controller,
