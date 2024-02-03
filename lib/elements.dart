@@ -133,7 +133,8 @@ class InputBox extends StatelessWidget {
       child: TextField(
         cursorColor: Color(0xAAFFFFFF),
         keyboardType: TextInputType.number,
-        cursorHeight: fuelState.showCursor(controller) ? height*0.015 : 0,
+        cursorHeight: height*0.015,
+        showCursor: fuelState.showCursor(controller),
         decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -168,6 +169,7 @@ class InputBox extends StatelessWidget {
         onChanged: (text) => {
           fuelState.updateHandler()
         },
+        textAlignVertical: TextAlignVertical.center,
       ),
     );
   }
